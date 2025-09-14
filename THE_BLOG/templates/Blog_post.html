@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author’s Upload | PTECHSERVICES01</title>
+    <link rel="stylesheet" href="{% static './css/vanilla/upload.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <h2>Author’s Upload <small><i>powered by <span>PTECHSERVICES01</span></i></small></h2>
+    <p>FILL THE FOLLOWING INFORMATION TO UPLOAD A POST</p>
+
+    <form id="uploadForm" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <div class="form-group">
+            <label>Title :</label>
+            <input type="text" name="title" placeholder="Best cities in Qatar" required>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label>Description :</label>
+            <textarea name="description" rows="5" placeholder="Best quality city in Qatar for tourist attraction .........."></textarea>
+        </div>
+
+        <!-- ButtonColor, Category, Priority -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>ButtonColor :</label>
+                <input type="color" name="button_color" value="#000000">
+            </div>
+            <div class="form-group">
+                <label>Category :</label>
+                <select name="category">
+                    <option value="">Select</option>
+                    <option value="travel">Travel</option>
+                    <option value="education">Education</option>
+                    <option value="lifestyle">Lifestyle</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Priority :</label>
+                <select name="priority">
+                    <option value="">Select</option>
+                    <option value="1">1 (High)</option>
+                    <option value="2">2</option>
+                    <option value="3">3 (Low)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Upload Image -->
+        <div class="form-group">
+            <label>PostImage :</label>
+            <div class="upload-box" onclick="document.getElementById('fileElem').click()">
+                <p><strong>Click to upload</strong> or drag and drop</p>
+                <small>(Max File Size : 25MB)</small>
+            </div>
+            <input type="file" id="fileElem" name="post_image" accept="image/*" hidden>
+        </div>
+
+        <!-- Preview -->
+        <div id="preview-box" style="display:none;">
+            <img id="preview-img" src="" alt="Preview" width="150">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="upload-btn">UPLOAD</button>
+    </form>
+
+    <!-- JavaScript -->
+    <script>
+        const fileElem = document.getElementById('fileElem');
+        const previewImg = document.getElementById('preview-img');
+        const previewBox = document.getElementById('preview-box');
+        const progressBar = document.getElementById('progress-bar');
+
+        fileElem.addEventListener('change', function () {
+            const file = fileElem.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImg.src = e.target.result;
+                    previewBox.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+    //    document.getElementById('uploadForm').addEventListener('submit', function (e) {
+    //        e.preventDefault();
+
+    //        const formData = new FormData(this);
+
+    //        axios.post("{% url 'DataPostView' %}", formData, {
+    //            headers: {
+    //                'Content-Type': 'multipart/form-data'
+    //            },
+    //            onUploadProgress: function (progressEvent) {
+    //                let percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+    //                progressBar.style.width = percent + '%';
+    //            }
+    //        })
+    //       .then(response => {
+    //            alert("Uploaded Successfully");
+    //            window.location.reload();
+    //        })
+    //        .catch(error => {
+    //            alert("Error uploading");
+    //            console.error(error);
+    //        });
+    //    });
+    </script>
+
+</body>
+</html>

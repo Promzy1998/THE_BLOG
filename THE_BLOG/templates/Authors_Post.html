@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block userMode %}
+USER READER
+{% endblock%}
+{% block auth_mode %}
+<h3> <a href="{% url 'signup_login' %}" style="color:white; text-decoration:none;">LOGIN AS AUTHOR</a></h3>
+{% endblock %}
+{% block hero_text %}
+{{author.username}}
+{% endblock%}

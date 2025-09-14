@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static '/css/Bootstrapp/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static './css/vanilla/style.css' %}?v={{ timestamp }}">
+        <link rel="stylesheet" href="{% static './css/vanilla/MediaQuery.css' %}?v={{ timestamp }}">
+        <title> {% block title %}THE BLOG {% endblock title %}</title>
+        <style>
+           .filter a{
+                display: block;
+            }
+        </style>
+    </head>
+<body>
+      <!-- overall blog container  -->
+    <div class="Blog-body">
+        <!-- main container -->
+        <div class="main">
+            <!-- Blog header -->
+    <div class="header flex-container-column">
+        <!-- Blog top nav -->
+        <div class="Top-nav flex-container-row">
+            <div class="Text-nav flex-container-row">
+                <div class="User-mode">
+                    <h3 class="color-white">{% block userMode %}
+                        {% if user.is_authenticated %}
+                            {% if author.username == request.user.username %}
+                                AUTHOR MODE  
+                            {% else %}
+                                USER READER 
+                            {% endif %} 
+                        {% else %}
+                            USER READER 
+                        {% endif %} 
+                       
+                         
+                    {% endblock %}</h3>
+                </div>
+                <div class="Blogger-login color-white">{% block auth_mode %}
+                    {% if user.is_authenticated %}
+                         <h3>{{ user.username.split.0 }}</h3>
+                         <h3> <a href="{% url 'Logout' %}" style="color:white; text-decoration:none;">LOGOUT</a></h3> 
+                    {% else %}    
+                      <h3> <a href="{% url 'signup_login' %}" style="color:white; text-decoration:none;">LOGIN AS AUTHOR</a></h3>
+                    {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+           <div class="switcher">
+            <div class="circle">
+                <img src="{% static './assets/img/logo_assets/Ellipse 3.svg' %}" alt="daylight" width="15px" class="day">
+                <img src="{% static './assets/img/logo_assets/Subtract.svg' %}" alt="night" width="15px" class="night">
+            </div>
+           </div>
+      
+        </div>
+        <div class="Hero-text-container color-white">
+            <div class="filter-bar flex-container-row Bg-Color-Day">
+                <div class="flex-container-column description-name Bg-Color-Day">
+                    <span  class="{% if selected_category == 'fashion' %}selected{% endif %} Fashion">FASHION</span>
+                  <span  class="{% if selected_category == 'tech' %} selected{% endif %} Technology">TECHNOLOGY</span>
+                    <span class="{% if selected_category == 'bussiness' %}selected{% endif %} Bussiness">BUSSINESS</span>
+                    <span class="{% if selected_category == 'health' %}selected{% endif %} Health">HEALTH</span>
+                    <span class="{% if selected_category == 'lifestyle' %}selected{% endif %} Lifestyle">LIFE-STYLE</span>
+                </div>
+                <div class="filter flex-container-column">
+                    {% if author %}
+                    <span class="{% if selected_category == 'fashion' %}radius-top default{% endif %}" id="Fashion">
+                        <a style="display:block" href="{% url 'PostViews'   author_slug 'Fashion' %}">.</a>
+                    </span>
+                   
+                    <span class="{% if selected_category == 'tech' %} active default{% endif %}" id="Technology">
+                        <a href="{% url 'PostViews' author.slugs 'Tech' %}">.</a>
+                    </span>
+
+                    
+                    <span  class="{% if selected_category == 'bussiness' %} active default{% endif %}"  id="Bussiness">
+                         <a href="{% url 'PostViews' author.slugs  'Bussiness'  %}">.</a>
+                    </span>
+                
+                
+                    <span class="{% if selected_category == 'health' %} active default{% endif %}" id="Health">
+                        <a href="{% url 'PostViews' author.slugs 'Health'  %}">.</a>
+                    </span>
+                   
+                    
+                    <span class="{% if selected_category == 'lifestyle' %}  radius-bottom default{% endif %}" id="Lifestyle" >
+                         <a href="{% url 'PostViews' author.slugs 'Lifestyle' %}">.</a>
+                        </span>
+                     {% else %}
+                     <span class="{% if selected_category == 'fashion' %}  radius-top default{% endif %}" id="Fashion">
+                        <a href="{% url 'Index_category' 'Category' 'Fashion' %}">.</a>
+                    </span>   
+                     <span class="{% if selected_category == 'tech' %} active default{% endif %}" id="Technology">
+                        <a href="{% url 'Index_category' 'Category' 'Tech' %}">.</a>
+                    </span>   
+                     <span class="{% if selected_category == 'bussiness' %} active default{% endif %}" id="Bussiness">
+                        <a href="{% url 'Index_category' 'Category' 'Bussiness' %}">.</a>
+                    </span>   
+                     <span class="{% if selected_category == 'health' %} active default{% endif %}" id="Health">
+                        <a href="{% url 'Index_category' 'Category' 'Health' %}">.</a>
+                    </span>   
+                     <span class="{% if selected_category == 'lifestyle' %}  radius-bottom default{% endif %}" id="Lifestyle">
+                        <a href="{% url 'Index_category' 'Category' 'Lifestyle' %}">.</a>
+                    </span>   
+                  
+                   {% endif %}
+                  
+
+                </div>
+            </div>
+            <div class="Hero-text">
+                <!-- HEADER TEXT -->
+                <h1>{% block hero_text %}
+                 THE BLOG
+                {% endblock %}
+            </h1>
+            </div>
+        </div>
+       
+    </div>
+        
+    {% block main_section %}
+
+    {% endblock %}
+</div>
+</div>
+    <script src="{% static 'js/interaction.js' %}"></script>
+   </body>
+</html>

@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Your Post</title>
+    <link rel="stylesheet" href="{% static './css/vanilla/upload.css' %}">
+    <link rel="stylesheet" href="{% static './css/vanilla/MediaQuery.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        
+      
+    </style>
+</head>
+<body class="body_upload">
+   <div class="container_upload">
+    <div class="Top_desc">
+        <img src="{% static './assets/img/logo_assets/author upload_logo.png' %}" alt="" class="author_upload_logo" width="91px" height="84px">
+      <div class="title_decription">
+      <h2>Author’s Update
+        <small>
+         <i>powered by <br><span>PTECHSERVICES01</span></i>
+        </small>
+       </h2>
+       <p>FILL THE FOLLOWING INFORMATION TO UPDATE THE NECESSARY AREAS</p>
+    </div>  
+    </div>
+    <form id="uploadForm" enctype="multipart/form-data" method="post" action="">
+        {% csrf_token %}
+    <div class="field_box">
+        <div class="field_title">
+            <h3 class="title">
+                {{ form.Title.label_tag }}
+            </h3>
+            {{ form.Title }}
+            {{ form.Title.errors }}
+        </div>
+        <div class="field_description">
+            <h3 class="desc">
+                {{form.Description.label_tag}}
+            </h3>
+            {{form.Description}}
+            {{ form.Description.errors}}
+           
+        </div>
+        <div class="button_color_field">
+            <h3 class="button_color_text">
+                {{form.buttonColor.label_tag}}
+            </h3>
+            
+            {{form.buttonColor}}
+            
+        </div>
+        <div class="selective_field">
+            <div class="category">
+                {{form.category.label_tag}}
+                {{form.category}}
+            </div>
+            <div class="priority">
+                {{form.priority.label_tag}}
+                {{form.priority}}
+            </div>
+        </div>
+        <div class="PostImage_field">
+            <h3 class="title">
+               {{form.PostImage.label_tag}}
+            </h3>
+           <div class="image_upload">
+            <img src="{% static './assets/img/logo_assets/author upload_logo.png' %}" alt="" width="91px" height="84px">
+            <p><strong> Click to upload</strong> or drag</p>
+            <h5>(Max File Size : 25MB)</h5>
+            <!-- <input type="file" name="post_image" id="img_uploader" hidden> --><br>
+            {{ form.PostImage }}
+            {{ form.PostImage.errors }}
+                        
+           </div>
+        
+           <div class="file_upload_description">
+            <div class="file_img">
+                <img src="{% static './assets/img/logo_assets/file_upload image.png' %}" alt="" width="80px" height="80px" id="img">
+                <small>Qatar.jpg <br>300KB</small>
+                
+               
+                
+            </div>
+           
+            <div class="percent_container">
+                <div class="percentage">
+                    <div class="percent"></div>
+                </div>
+                <div class="img_trash">
+                    <img src="{% static './assets/img/logo_assets/Trash_Bin.jpg' %}" alt="Trash" width="30px">
+                </div>
+                <p>0%</p>
+            </div>
+         </div>
+    <div class="button">
+        <button type="submit" class="btn">Update</button>
+    </div>
+</form>
+   </div>
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const uploadBox = document.querySelector(".image_upload");
+      const uploader = document.getElementById("id_PostImage");
+  
+      if (uploadBox && uploader) {
+        uploadBox.addEventListener("click", function () {
+          uploader.click();
+        });
+      } else {
+        console.warn("Upload box or uploader input not found in DOM.");
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>

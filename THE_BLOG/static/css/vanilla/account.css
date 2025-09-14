@@ -1,0 +1,345 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background:rgb(9, 11, 31);
+}
+
+.account-body{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 5%;
+    background-color:rgb(79 79 93);
+    border-radius: 20px;
+    border: 2px solid rgb(207, 199, 199);
+    padding: 1%;
+    box-shadow: 2px 4px 8px black;
+}
+.account{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70vh;
+}
+
+.transition-body{
+    width: 50vw;
+    height: 70vh;
+    position: absolute;
+    z-index: 2;
+    transform: translateX(92%);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgb(66 77 151 / 37%);
+    transition: 1s ease-in-out;
+  }
+.transition-body:hover{
+    box-shadow: 0 8px 32px rgb(40 57 173 / 37%);
+}
+.Login_container{
+width: 50%;
+padding: 2%;
+position: relative;
+z-index: 3;
+transition: 1s ease-in-out;
+}
+.Signup_container{
+    width: 50%;
+    /* background-color: brown; */
+    padding: 3%;
+    position: relative;
+    z-index: 3;
+    transition: 0.3s ease-in-out;
+}
+.Signup,.Login{
+    margin-top: 25%;
+    position: static;
+}
+.Signup form{
+    margin-top: -10% !important;
+}
+
+.translateleft{
+    transition: 0.3s;
+    transform: translateX(0%);
+}
+.translateright{
+    transition: 0.3s;
+    transform: translateX(93%);
+}
+.transition{
+    transition: transform 0.5s ease
+}
+
+.Signup_container .Sig{
+    margin-top: 40% !important;
+       display: block;
+}
+.Sig,.Log{
+    margin-top: 20%;
+    box-shadow: 2px 4px 6px black;
+    margin-left: 14%;
+    width: 70%;
+    background: white
+}
+
+
+.dblock{
+    display: none !important;
+}
+.dnone{
+    display: none !important;
+}
+form p label {
+    display: none;
+}
+
+input{
+    border-radius: 3px;
+    padding: 2%;
+    width: 100%;
+    opacity: 0.8;
+    color: black;
+ }
+ input::placeholder{
+    color: black;
+    font-style: oblique;
+    opacity: 0.6;
+    font-size: 90%;
+ }
+
+
+button{
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, color 0.3s ease;
+    font-size: 120%;
+    border-radius: 5px;
+    padding: 1%;
+}
+button:hover{
+    background: black;
+    color: white;
+}
+#strength, #modal_password, #login_modal{
+    display: none;
+    color: #a52222;
+    background: white;
+    padding: 1%;
+    font-size: 80%;
+    font-weight: 900; 
+    left: 45%;
+    opacity: 0.6;
+}
+/* .toggle-password {
+    position: absolute;
+    right: 10%;
+    top: 53%;
+    transform: translateY(-50%);
+    cursor: pointer;
+} */
+
+.toggle-password{
+    position: fixed;
+    margin-left: -3%;
+    margin-top: .5%;
+    cursor: pointer;
+    display: inline-block;
+}
+#toggler, #Login_toggle, #confirmtoggler{
+    opacity: 0.2;
+}
+
+/* media for smaller screens */
+@media (min-width:900px)  and (max-width:1200px){
+    .translateright{
+        transform: translateX(90%);
+    }
+    .account_btn{
+        font-size: 100% !important;
+    }
+    form{
+        margin-top: 50% !important;
+    }
+    .Signup_container .Sig {
+        margin-top: 60% !important;
+       
+    }
+    
+}
+
+@media (min-width:601px) and (max-width:960px) {
+    input {
+        font-size: 90% !important;
+    }
+    input::placeholder{
+        font-size: 80% !important;
+    }
+    form{
+        margin-top: 40% !important;
+    }
+    .Signup_container .Sig {
+        margin-top: 60% !important;
+       
+    }
+    .Log{
+        margin-top: 40% !important;
+    }
+    
+}
+@media (min-width:961px) and (max-width:1200px) {
+   
+    form{
+        margin-top: 20% !important;
+    }
+    .Signup_container .Sig {
+        margin-top: 45% !important;
+       
+    }
+    .Log{
+        margin-top: 20% !important;
+    }
+    
+}
+@media (max-width:1200px)  {
+    .account-body {
+        width: 100%;
+    }
+    
+}
+@media (min-width:1200px) {
+    .transition-body{
+        width: 40vw;
+    } 
+}
+@media (min-width:601px) {
+    .Signup_container .Log, .Login_container .Sig{
+        display: none !important;
+    }
+    
+     .Login_container .acct{
+        display: none !important;
+    } 
+    
+    .Login_container .Sig{
+        display: none !important;
+    }
+    .button{
+        display: none;
+    }
+   
+    .account_btn{
+        font-size: 90% !important;
+        font-weight: bold;
+    }
+    /* .Login_container .button{
+        display: none !important;
+    } */
+}
+
+@media (max-width:899px) {
+    .translateright{
+        transform: translateX(90%);
+    }
+    input{
+        font-size: 80% !important;
+    } 
+    input::placeholder{
+        font-size: 70% !important;
+    }
+    .toggle-password{
+        margin-left: -4%;
+    }
+
+    .account_btn{
+        font-size:80% !important;
+    }
+    .Signup button, .Login button{
+        font-size: 90%;
+
+    }
+}
+
+@media (max-width:600px) {
+    .account_btn{
+        font-size: 80% !important;
+        font-weight: bold;
+    }
+    .Signup_container{
+        display: none;
+    }
+    .Login_container{
+        width: 100%;
+    }
+    .translateleft, .translateright{
+        transition: none;
+    }
+    .Login_container .acct{
+        display: none !important;
+    } 
+   
+    .transition-body{
+        width: 94vw;
+        transform: translateX(0);
+        
+    }
+    input {
+        font-size: 120% !important;
+    }
+    .Login .btn {
+        font-size: 120% !important;
+    }
+
+
+    .toggle-password{
+        margin-top: 2%;
+        margin-left: -10%;
+    }
+
+    .Signup button, .Login button{
+        font-size: 120%;
+        color: white;
+        width: 34%;
+        margin-top: 2%;
+        margin-left: 30%;
+        padding: 1.5%;
+     
+    }
+
+    
+    .Sig{
+        width: 65%;
+        margin-top: 12%;
+        color: black !important;
+        margin: 0 auto;
+    }
+    .Sig:hover{
+        color: white !important;
+    }
+    .Log{
+        color: black !important;
+    }
+    .Log:hover{
+        color: white !important;
+    }
+    .transition{
+        display: block !important;
+        margin-top: 2%;
+    }
+    .Log-Config-Mediaquery form{
+        display: none !important;
+    }
+    .Sig-Config-Mediaquery form{
+        margin-top: 20% !important;
+    }
+    .Log-Config-Mediaquery{
+       display: none !important;
+    }
+    .Sig-Config-Mediaquery{
+       margin-top: -20%;
+       width: 100vw; 
+       display: block !important;
+    }
+   
+}

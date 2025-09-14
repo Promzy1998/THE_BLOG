@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/vanilla/account.css' %}">
+    <title>Login/Signup Page</title>
+    <style>
+        .error {
+            color:#3b0a0a;
+            font-size: 14px;
+             }
+             .signup_error{
+                font-size: 120%;
+                margin-left: 20%;
+
+             }
+    </style>
+</head>
+<body>
+    <div class="account-body">
+        <div class="account">
+            <div class="transition-body"></div>
+
+            <!-- Signup Form -->
+            <div class="Signup_container">
+                 <!-- Display Signup Error Message -->
+            {% if signup_error %}
+            <span class="signup_error error">{{ signup_error }}</span>
+        {% endif %}
+                <div class="Signup">
+                    <form action="" method="post" class="form_sign dnone">
+                        {% csrf_token %}
+
+                        {% for error in signup_form.username.errors %}
+                        <span class="error">{{ error }}</span>
+                        {% endfor %}
+
+                        {{ signup_form.username }}
+                         <br><br>
+
+                        {{ signup_form.email }}
+                        {% for error in signup_form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <br><br>
+
+                        {{ signup_form.phone }}
+                        {% for error in signup_form.phone.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <br><br>
+
+                        {{ signup_form.password1 }}
+                        <span class="toggle-password" id="toggler">👁️</span>
+                        {% for error in signup_form.password1.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <br><br>
+
+                        {{ signup_form.password2 }}
+                         <span class="toggle-password" id="confirmtoggler">👁️</span> 
+                        {% for error in signup_form.password2.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <br><br> 
+
+                        <button type="submit" id="btn" name="signup">Sign Up</button><br><br>
+                        <span id="strength"></span>
+                        <span id="modal_password"></span>
+                    </form>
+
+                    <button class="Log dblock account_btn">Login As Author</button>
+                    <button class="Sig account_btn">Sign Up For An Account</button>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="Login_container">
+                <div class="Login">
+                    <form action="" method="post" class="form-login" style="margin-top: 20%;">
+                        {% csrf_token %}
+
+                        {{ login_form.username }}
+                        {% for error in login_form.username.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <br><br>
+
+                        {{ login_form.password }}
+                        <span class="toggle-password" id="Login_toggle">👁️</span>
+                        {% for error in login_form.password.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <br><br>
+
+                        <span id="strength"></span><br>
+                        <span id="login_modal">wiepweeo</span><br><br>
+
+                        <button type="submit" id="btn_login" name="login">Login</button>
+                    </form>
+
+                    <button class="Sig account_btn">Sign Up For An Account</button><br>
+                    <button class="Log account_btn acct">Login As Author</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

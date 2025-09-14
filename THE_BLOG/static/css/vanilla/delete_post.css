@@ -1,0 +1,101 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #F2F1F2;
+}
+
+.post-container{
+    background: white;
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #E2DFE2;
+    border-radius: 5px;
+}
+.Title_head h2{
+  
+    color: #D4484A;
+    font-size: 40px;
+    padding: 2%;
+    width: 70%;
+    margin: 0 auto;
+}
+.PostView{
+    background: white;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+    border: 2px solid #D9D9D9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    
+}
+.PostView .Title_head, .text{
+    width: 50%;
+}
+.image{
+  padding: 2%; 
+  width: fit-content; 
+  
+}
+.image img{
+    width: 400px;
+    /* min-width: 40% !important; */
+    border-radius: 5px;
+    border: 2px solid #EAEAEA;
+}
+.text{
+    padding-top: 5%;
+}
+.text #text_title{
+    font-size: 40px;
+}
+.text #sub_title{
+    font-size: 25px;
+}
+
+
+.text #text_title, #sub_title{
+    font-family: Poppins;
+    margin-left: 5%;
+    color: #696964;
+
+}
+.button_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2%;
+}
+.button_submit, .button_cancel{
+    padding: 3%;
+}
+.button_cancel a{
+   background-color: #6D7A89; 
+   display: block;
+   text-decoration: none; 
+   text-align: center;
+}
+.button_submit button{
+    background-color: #D0393A;
+}
+.button_submit button, .button_cancel a{
+    color: white;
+    font-size: 16px;
+    font-family: Poppins;
+    border-radius: 10px;
+    width: 160px;
+    padding: 5%;
+    border: none;
+          
+}
+.button_cancel a:hover{
+    background-color: white;
+    color: #6D7A89;
+    border: 1px solid #6D7A89;
+}
+.button_submit button:hover{
+    background-color: white;
+    color: #D0393A;
+    border: 1px solid #D0393A;
+}

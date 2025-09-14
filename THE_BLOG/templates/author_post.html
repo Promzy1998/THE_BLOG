@@ -1,0 +1,450 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block hero_text %}
+
+{{author.username.split.0}}
+
+{% endblock %}
+{% block main_section %}
+<div class="Main-section padding-top">
+    
+    {% if user.is_authenticated %}
+     {% if request.user.username == author.username%}
+    <a href="{% url 'DataPostView'%}" id="UploadPost" style="color: white;">+ Upload Post</a>
+    {% endif %}
+    {% endif %}
+   
+    
+   
+{% if posts %}   
+<h4 class="color-white">Recent blog posts</h4>
+<div class="Recent-blog-post flex-container-column padding-top first-blog-post">
+    <div class="Recent-post flex-container-row">
+        {% for post in recent_post %}
+       
+     <div class="blog-post-card color-white ">
+        <div class="img card">
+        <a href="{% url 'DetailPostView' post.author.slugs post.category post.slug %}">
+         <img src="{{post.PostImage.url}}" alt="img" width="100%" class="responsive-img">
+        </div>
+    </a>
+        {% if user.is_authenticated %}
+        {% if request.user == post.author %}
+        <div class="author-tools p-5 text-center">
+            <div class="tools-box" style="font-size: 150%;">
+                 <div class="Delete p-1">
+                    <a href="{% url 'DeletePostView' post.author.slugs post.category post.slug %}">
+                    <button type="button" >
+                    Delete
+                </button>
+                    </a>
+            </div>
+                <div class="Update p-1">
+                    <a href="{% url 'EditPostView' post.author.slugs post.slug  %}">
+                <button type="button" >
+                 Update
+                </button>
+                </a>
+            </div>
+            <div class="View p-1">
+                <a href="{% url 'DetailPostView' post.author.slugs  post.category post.slug %}">
+                    <button type="button">
+                       View
+                    </button> </a>
+                </div>
+            </div>
+          </div> 
+          {% endif %}
+          {% endif %}
+          
+        <div class="text-desc">
+        <h3>{{post.Title}}</h3>
+        <p>{{post.Description|truncatewords:8}}</p>
+    </div>
+    <div class="datetime-stamp">
+        <h3 class="color-white">{{ post.created_at|date:"d D, M Y - H:i" }}</h3>
+    </div>
+       <div class="button">
+       <a href="{% url 'DetailPostView' post.author.username  post.category  post.slug %}">
+        <input type="button" value="READ MORE"  style="background-color:{{post.buttonColor}}; color:{% if post.buttonColor == '#000000' %}white{% else %}black{% endif %};">
+    </a>
+       </div>
+     
+     </div>
+       {% endfor %}
+    {% else %} 
+    <h4 class="color-white">Posts not available</h4>  
+    {% endif %}
+    </div>
+    {% for post in bigger_pics|slice:":1"%}
+    {% if user.is_authenticated %}
+    <div class="Recent-post margin-top-5">
+        <div class="blog-post-card3 color-white">
+            <div class="img">
+            <a href="{% url 'DetailPostView' post.author.slugs post.category post.slug %}">   
+            <img src="{{post.PostImage.url}}" alt="Tourist site" width="100%" height="100%" class="responsive-img">
+          </a>
+            </div>
+            {% if user.is_authenticated %}
+            {% if request.user == post.author %}
+        <div class="author-tools p-5 text-center">
+            <div class="tools-box" style="font-size: 150%;">
+                 <div class="Delete p-1">
+                    <a href="{% url 'DeletePostView' post.author.slugs post.category  post.slug %}">
+                    <button type="button" >
+                    Delete
+                </button>
+            </a>
+            </div>
+                <div class="Update p-1">
+                <a href="{% url 'EditPostView' post.author.slugs post.slug %}">
+                    <button type="button">
+                       Update
+                    </button> </a>
+                </div>
+                <div class="View p-1">
+                    <a href="{% url 'DetailPostView' post.author.slugs  post.category post.slug %}">
+                        <button type="button">
+                           View
+                        </button> </a>
+                    </div>
+            
+                </div>
+                
+            </div>
+            {% endif %}    
+            {% endif %}    
+            <div class="text-description">
+                <div class="description">
+                    <div class="datetime-stamp">
+                        <h2 class="color-white">{{ post.created_at|date:"d D, M Y - H:i" }}</h2>
+                    </div>
+                    <div class="blogpost-description">
+                        <h3>{{post.Title}}</h3>
+                        <p>{{post.Description|truncatewords:8}}</p>
+                        
+                    </div>
+                    <div class="button">
+                        <a href="{% url 'DetailPostView' post.author.username post.category post.slug %}">
+                        <input type="button" value="KNOW MORE" style="background-color:{{post.buttonColor}}; color:{% if post.buttonColor == '#000000'%}white{% else %}black{% endif %}">
+                        </a>
+                       </div>
+
+                </div>
+            </div>
+          </div> 
+       
+           
+            
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+   
+    <div class="All-post margin-top-5">
+        {% if first_all_posts %}
+        <h2>All Blog Post</h2>
+        {% endif %}
+        <div class="post-container flex-container-row">
+            {% for post in first_all_posts %}
+    <!-- Display paginated post -->
+        <div class="post first-post">
+            <div class="img">
+                <a href="{% url 'DetailPostView' post.author.username post.category  post.slug %}">
+                <img src="{{post.PostImage.url}}" alt="b-village" width="100%">
+            </a>
+            </div>
+            {% if user.is_authenticated %}
+            {% if request.user == post.author %}
+            <div class="author-tools p-5 text-center">
+                <div class="tools-box" style="font-size: 150%;">
+                   
+                     <div class="Delete p-1">
+                    <a href="{% url 'DeletePostView' post.author.username post.category  post.slug %}">
+                        <button type="button" >
+                        Delete
+                    </button>
+                </a>
+                </div>
+                    <div class="Update p-1">
+                    <a href="{% url 'EditPostView' post.author.username post.slug %}">
+                        <button type="button" >
+                           Update
+                        </button>
+                    </a>
+                    </div>
+                    <div class="View  p-1">
+                        <a href="{% url 'DetailPostView' post.author.username post.category post.slug %}">
+                        <button type="button">
+                       View
+                    </button></a>
+                </div>
+                </div>
+              </div> 
+              {% endif %}         
+              {% endif %}         
+            <div class="text-desc">
+                <div class="description ">
+                    <div class="datetime-stamp">
+                        <h3>{{post.created_at|date:"d D, M Y - H:i"}}</h3>
+                    </div>
+                    <div class="blogpost-description">
+                        <h3>{{post.Title}}</h3>
+                        <p>{{post.Description|truncatewords:4}}</p>
+                    </div>
+                    <div class="button" >
+                        <a href="{% url 'DetailPostView' post.author.username post.category  post.slug %}">
+                        <input type="button" value="GET MORE DETAILS"  style="background-color:{{post.buttonColor}}; color:{% if post.buttonColor == '#000000' %}white{% else %}black{% endif %};">
+                        </a>
+                       </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        <div class="post-container flex-container-row post-2">
+            {% for post in second_all_posts %}
+            <div class="post flex-container-column post-display margin-top-5">
+                <div class="img">
+                    <a href="{% url 'DetailPostView' post.author.slugs post.category post.slug %}">
+                    <img src="{{post.PostImage.url}}" alt="sharp leggins wears" width="100%">
+                    </a>
+                </div>
+            
+            {% if user.is_authenticated %}
+            {% if request.user == post.author %}
+                <div class="author-tools p-5 text-center">
+                    <div class="tools-box" style="font-size: 150%;">
+                         <div class="Delete p-1">
+                            <a href="{% url 'DeletePostView' post.author.slugs post.category  post.slug %}">
+                            <button type="button" >
+                            Delete
+                        </button>
+                            </a>
+                    </div>
+                        <div class="Update p-1">
+                            <a href="{% url 'EditPostView' post.author.username  post.slug %}">
+                            <button type="button" >
+                               Update
+                            </button></a>
+                        </div>
+                        <div class="View  p-1">
+                        <a href="{% url 'DetailPostView' post.author.username post.category  post.slug %}">   
+                            <button type="button">
+                           View
+                        </button>
+                        </a>
+                    </div>
+                    </div>
+                  </div>
+                  {% endif %}          
+                  {% endif %}          
+                <div class="text-desc margin-top-5">
+                    <div class="description w-1">
+                        <div class="datetime-stamp">
+                            <h3>{{post.created_at|date:"d D, M Y - H:i"}}</h3>
+                        </div>
+                        <div class="blogpost-description">
+                            <h3>{{post.Title}}</h3>
+                            <p>{{post.Description|truncatewords:8}}</p>
+
+                        </div>
+                        <div class="button">
+                            <a href="{% url 'DetailPostView' post.author.slugs post.category  post.slug %}">
+                            <input type="button" value="KNOW MORE" style="background-color:{{post.buttonColor}}; color:{% if post.buttonColor == '#000000' %}white{% else %}black{% endif %};">
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}
+            <div class="flex-container-column post-display2">
+                {% for post in third_all_posts %}
+                <div class="post flex-container-row post-a padding-2">
+                    <div class="img">
+                        <a href="{% url 'DetailPostView' post.author.slugs post.category post.slug %}">
+                        <img src="{{post.PostImage.url}}" alt="stretch-able" width="100%">
+                        </a>
+                    </div>
+                    <div class="author-tools p-5 text-center">
+                        <div class="tools-box" style="font-size: 150%;">
+                             <div class="Delete p-1">
+                                <a href="{% url 'DeletePostView' post.author.slugs post.category post.slug %}">
+                                <button type="button" >
+                                Delete
+                            </button>
+                                </a>
+                        </div>
+                            <div class="Update p-1">
+                            <a href="{% url 'EditPostView' post.author.slugs  post.slug %}">
+                                <button type="button" >
+                                   Update
+                                </button></a>
+                            </div>
+                            <div class="View  p-1">
+                                <a href="{% url 'DetailPostView' post.author.slugs  post.category post.slug %}">
+                                <button type="button">
+                               View
+                            </button>
+                               </a>
+                        </div>
+                        </div>
+                      </div>          
+                    <div class="text-desc margin-top-5">
+                        <div class="description">
+                            <div class="datetime-stamp">
+                                <h3>{{post.created_at|date:"d D, M Y - H:i"}}</h3>
+                            </div>
+                            <div class="blogpost-description">
+                                <h3>
+                                  {{post.Title}}
+                                </h3>
+                                
+                                <p>
+                                    {{post.Description|truncatewords:4}}
+                                </p>
+                            </div>
+                         
+                            <div class="button">
+                                <a href="{% url 'DetailPostView' post.author.slugs post.category  post.slug %}">
+                                <input type="button" value="FIND OUT MORE" >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+               
+        </div>
+        </div>
+  
+        {% for footer_post in footer_pics %}
+        <div class="catch-phrase-blog margin-top-5">
+            <div class="img">
+                <a href="{% url 'DetailPostView' footer_post.author.slugs footer_post.category  footer_post.slug %}">
+                <img src="{{footer_post.PostImage.url}}" alt="headphone" width="95%">
+                </a>
+            </div>
+        
+        {% if user.is_authenticated %}
+        {% if request.user == footer_post.author %}
+            <div class="author-tools p-5 text-center">
+                <div class="tools-box" style="font-size: 150%;">
+                     <div class="Delete p-1">
+                        <a href="{% url 'DeletePostView' footer_post.author.slugs footer_post.category footer_post.slug %}">
+                        <button type="button" >
+                        Delete
+                    </button>
+                        </a>
+                </div>
+                    <div class="Update p-1">
+                        <a href="{% url 'EditPostView' footer_post.author.slugs  footer_post.slug %}">
+                        <button type="button" >
+                           Update
+                        </button></a>
+                    </div>
+                    <div class="View  p-1">
+                        <a href="{% url 'DetailPostView' footer_post.author.slugs footer_post.category footer_post.slug %}">
+                        <button type="button">
+                       View
+                    </button>
+                    </a>
+                </div>
+                </div>
+              </div>   
+              {% endif %}       
+              {% endif %}       
+            <div class="desc">
+            <div class="datetime-stamp" >
+                    <h3 style="color: white;">{{footer_post.created_at|date:"d D, M Y - H:i"}}</h3>
+                </div>
+               <h2>{{footer_post.Title}}</h2>
+               <a href="{% url 'DetailPostView' footer_post.author.slugs footer_post.category footer_post.slug %}">
+                <button type="submit" >HERE IS WHY</button>
+               </a>
+            </div>
+        </div>
+       
+        {% endfor %}  
+          
+    
+</div>
+</div>
+   
+    <div class="footer">
+        <div class="footer-container">
+            <div class="Top-footer-nav">
+                
+                <!-- Prev Button -->
+                <div class="previous">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">
+                            <img src="{% static './assets/img/logo_assets/arrow.png' %}" alt="back arrow" class="prev">
+                        </a>
+                        <span>Previous</span>
+                    {% endif %}
+                </div>
+    
+                <!-- Page Numbers -->
+                <div class="nav-numbers">
+                    <div class="numbers">
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if num >= page_obj.number|add:-2 and num <= page_obj.number|add:2 %}
+                                {% if num == page_obj.number %}
+                                    <span id="active">{{ num }}</span>
+                                {% else %}
+                                    <a href="?page={{ num }}"><span>{{ num }}</span></a>
+                                {% endif %}
+                            {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                                <a href="?page={{ num }}"><span>{{ num }}</span></a>
+                            {% elif forloop.first or forloop.last %}
+                                <span>...</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+    
+                <!-- Next Button -->
+                <div class="next">
+                    {% if page_obj.has_next %}
+                        <span>Next</span>
+                        <a href="?page={{ page_obj.next_page_number }}">
+                            <img src="{% static './assets/img/logo_assets/arrow-left.png' %}" alt="arrow front" class="next">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+    
+            <!-- Footer Links -->
+            <div class="links margin-top-5">
+                <div style="font-family: cursive;"> 
+                    <a class="color-white"  href="{% url 'Index'%}">view the main blog</a>
+                    <br>
+                    {% if user.is_authenticated %}
+                    {% if request.user != posts.author %}
+                       
+                    <a class="color-white" href="{% url 'PostView' request.user.slugs %}">view my blog</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                <a href="" id="Production">@ 2024,</a>
+                <a href="" id="Twitter">Twitter,</a>
+                <a href="" id="Linkedin">LinkedIn,</a>
+                <a href="" id="Email">Email,</a>
+                <a href="" id="Rssfeed">RSS &nbsp;&nbsp;feed</a>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+    
+    </div> 
+    </div>
+    
+{% endblock %}
+
+
+

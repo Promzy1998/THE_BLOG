@@ -1,0 +1,84 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f7ff;
+    padding: 30px;
+  }
+  
+  .form-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 20px rgba(0, 105, 255, 0.1);
+  }
+  
+  h2 {
+    color: #0077cc;
+    margin-bottom: 5px;
+  }
+  
+  .subtitle {
+    color: #7a94b2;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #003366;
+    margin-bottom: 8px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccd9f2;
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: #f4f9ff;
+    color: #003366;
+  }
+  
+  .upload-box {
+    border: 2px dashed #80bfff;
+    padding: 20px;
+    text-align: center;
+    background-color: #e6f0ff;
+    border-radius: 10px;
+  }
+  
+  .custom-file-upload {
+    color: #0077cc;
+    font-weight: 500;
+    cursor: pointer;
+    display: block;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  .btn-confirm {
+    background-color: #0077cc;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-confirm:hover {
+    background-color: #005fa3;
+  }
+  
+   

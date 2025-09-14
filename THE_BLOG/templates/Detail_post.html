@@ -1,0 +1,202 @@
+
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static '/css/Bootstrapp/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static './css/vanilla/style.css' %}?v={{ timestamp }}">
+  <link rel="stylesheet" href="{% static './css/vanilla/MediaQuery.css' %}?v={{ timestamp }}">
+  <title> {% block title %}THE BLOG {% endblock title %}</title>
+  <style>
+     .filter a{
+          display: block;
+      }
+      .card img{
+        height: 300px;
+    
+      }
+      .post-detail{
+        color: white;
+        font-family: Poppins;
+      }
+
+  body {
+  background-color: rgb(9, 11, 31);
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 10px;
+}
+
+h1, h3 {
+  color: #ffffff;
+}
+
+.post-detail {
+ 
+  padding: 5px;
+  border-radius: 12px;
+  margin-bottom: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+
+.post-detail img {
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 95%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.about_detail{
+  margin-bottom: 3%;
+}
+
+.about_detail p{
+  opacity: 0.8;
+  font-size: small;
+}
+
+.about_detail a{
+  margin: 1%;
+}
+.post-content h1{
+  opacity: 0.4;
+  font-size: 200%;
+  padding: 1% 0;
+}
+
+.post-content {
+  font-family: Poppins;
+}
+.post-content p {
+  font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+  
+}
+
+
+.related-posts h3 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.related-posts .card {
+  background-color:#1a1635;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.related-posts .card:hover {
+  transform: translateY(-1px);
+}
+
+.related-posts img {
+  max-width: 100%;
+  height: auto;
+  border-bottom: 1px solid #333;
+  height: 250px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  font-family: Poppins;
+}
+
+.card-text {
+  font-size: 1.2rem;
+  color: white;
+ 
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #090b1f;
+  color: #ffffff;
+  padding: 8px 14px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+  border:  2px solid  grey;
+}
+
+.btn:hover {
+  background-color: white;
+  color:#090b1f;
+}
+.b-link{
+  padding-left: 5%;
+}
+  </style>
+</head>
+{% block content %}
+<div class="container py-5">
+
+  <!-- Main Blog Post -->
+  <div class="post-detail">
+    <div class="about_detail">
+    <h1>{{ Post.Title }}</h1>
+    <p><strong>Author :</strong> {{ Post.author }} |&nbsp; <strong>Category :</strong> {{ Post.category }} |&nbsp;<strong>Date:</strong> {{ Post.created_at }}</p>
+    {% if user.is_authenticated %}
+    {% if request.user == Post.author %}
+    <a href="{% url 'EditPostView' Post.author.slugs  Post.slug %}"><div class="btn">Edit</div></a>
+    <a href="{% url 'DeletePostView' Post.author.slugs Post.category Post.slug %}"><div class="btn">Delete</div></a>
+    {% endif %}
+    {% endif %}
+  </div>
+    
+    
+    {% if Post.PostImage %}
+      <img src="{{ Post.PostImage.url }}" class="img-fluid mb-4" alt="{{ Post.Title }}">
+    {% endif %}
+
+    <div class="post-content">
+      <h1>{{Post.Title}}</h1>
+      
+      {{ Post.Description|linebreaks }}
+    </div>
+  </div>
+
+  <!-- Random Posts Section -->
+  <div class="related-posts mt-5">
+    <h3 class="mb-4">🔁 You may also like</h3>
+
+    <div class="row">
+      {% for post in category_random_posts %}
+      <div class="col-md-4">
+        <div class="card mb-3 shadow-sm">
+          {% if post.PostImage %}
+          <img src="{{ post.PostImage.url }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ post.Title|truncatewords:8 }}</h5>
+            <p class="card-text"><small class="">{{ post.Description |truncatewords:2 }} </small></p>
+            <a href="{% url 'DetailPostView' post.author.username post.category post.slug %}" class="btn btn-primary btn-sm">Read More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <a href="{% url 'Index_category' 'Category' object.category%}" class="b-link">Back to home {{object.category}} page</a><br>
+  <a href="{% url 'PostViews' object.author.slugs object.category%}" class="b-link">Back to author's    {{object.category}} page</a>
+</div>
+{% endblock %}

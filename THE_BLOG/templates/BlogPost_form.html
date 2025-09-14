@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add a Review</title>
+  <link rel="stylesheet" href="{% static './css/vanilla/upload_form.css' %}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add a Review</h2>
+    <p class="subtitle">Fill the following information to move forward</p>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div class="form-group">
+        {{ form.Title.label_tag }}{{ form.Title }}{{ form.Title.errors }}
+      </div>
+
+      <div class="form-group">
+        {{ form.category.label_tag }}{{ form.category }}{{ form.category.errors }}
+      </div>
+
+      <div class="form-group">
+        {{ form.priority.label_tag }}{{ form.priority }}{{ form.priority.errors }}
+      </div>
+
+      <div class="form-group">
+        {{ form.buttonColor.label_tag }}{{ form.buttonColor }}{{ form.buttonColor.errors }}
+      </div>
+
+      <div class="form-group">
+        {{ form.Description.label_tag }}{{ form.Description }}{{ form.Description.errors }}
+      </div>
+
+      <!-- Drag and drop upload -->
+      <div class="form-group upload-box" id="dropArea">
+        <label for="imageInput" class="custom-file-upload">
+          Click to Upload or drag and drop (Max. file size: 25MB)
+        </label>
+        <input type="file" id="imageInput" accept="image/*" style="display: none;" />
+      </div>
+
+      <!-- Image preview -->
+      <img id="imagePreview" style="display: none; margin-top: 10px; max-height: 150px;" />
+
+      <!-- Progress bar -->
+      <div id="progressWrapper" style="display:none; margin-top:10px;">
+        <div style="background:#e0e0e0; border-radius:10px; overflow:hidden;">
+          <div id="uploadProgress" style="background:#0077cc; height:10px; width:0%;"></div>
+        </div>
+        <small id="progressText">0%</small>
+      </div>
+
+      <!-- Hidden fields -->
+      <div style="display: none;">
+        {{ form.uploaded_image_path }}
+        {{ form.PostImage }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-confirm">Confirm</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const uploadUrl = "{% url 'upload_image_temp' %}";
+    const dropArea = document.getElementById("dropArea");
+    const imageInput = document.getElementById("imageInput");
+    const imagePreview = document.getElementById("imagePreview");
+    const progressWrapper = document.getElementById("progressWrapper");
+    const progressBar = document.getElementById("uploadProgress");
+    const progressText = document.getElementById("progressText");
+    const hiddenInput = document.querySelector("[name='uploaded_image_path']");
+
+    dropArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropArea.classList.add("dragover");
+    });
+
+    dropArea.addEventListener("dragleave", () => dropArea.classList.remove("dragover"));
+
+    dropArea.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropArea.classList.remove("dragover");
+      const file = e.dataTransfer.files[0];
+      uploadFile(file);
+    });
+
+    imageInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      uploadFile(file);
+    });
+
+    function uploadFile(file) {
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        imagePreview.src = reader.result;
+        imagePreview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+
+      progressWrapper.style.display = "block";
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", uploadUrl, true);
+
+      xhr.upload.addEventListener("progress", (e) => {
+        if (e.lengthComputable) {
+          const percent = Math.round((e.loaded / e.total) * 100);
+          progressBar.style.width = percent + "%";
+          progressText.innerText = percent + "%";
+        }
+      });
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          hiddenInput.value = response.file_url;
+        } else {
+          alert("Upload failed.");
+        }
+      };
+
+      xhr.send(formData);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+{% load static %}
+
+   
+  {% block title %}Kennedy Author mode{% endblock title %}
+   
+
+  {% block userMode %}AUTHOR MODE{% endblock %}
+                   
+                  
+  {% block auth_mode %}
+    <div class="Author-name">
+        <h3>Kennedy Timothy </h3>
+            </div>
+                <h3>
+                    <a href="">LOGOUT</a>
+                        </h3>
+   {% endblock %}
+                    
+                
+             
+          
+           
+               
+        {% block hero_text %} KEN'S BLOG {% endblock %}
+          
+        {% block main_section %}
+         <!-- Blog main section-->
+         <div class="Main-section padding-top">
+            <div class="Top-text">
+            <h4 class="color-white">Recent blog posts</h4>
+            </div>
+            <div class="Recent-blog-post flex-container-column padding-top first-blog-post">
+                <div class="Recent-post flex-container-row">
+                 <div class="blog-post-card color-white">
+                    <div class="img">
+                     <img src="{% static './assets/img/Screenshot 2024-10-18 111700.png' %}" alt="img" width="100%">
+                    </div>
+                    <div class="author-tools p-5 text-center">
+                        <div class="tools-box" style="font-size: 150%;">
+                             <div class="Delete p-1">
+                                <button type="button" >
+                                Delete
+                            </button>
+                        </div>
+                            <div class="Update p-1">
+                                <button type="button" >
+                                   Update
+                                </button>
+                            </div>
+                            <div class="View  p-1">
+                                <button type="button">
+                               View
+                            </button></div>
+                        </div>
+                      </div>                  
+
+                   
+                    <div class="text-desc">
+                    <h2>BEST BLOG GIST EVER</h2>
+                </div>
+                <div class="datetime-stamp">
+                    <h3 class="color-white">Fri, Oct, 2024 -09:45</h3>
+                </div>
+                   <div class="button">
+                    <input type="button" value="READ MORE">
+                   </div>
+                 
+                 </div>
+                 <div class="blog-post-card2 color-white">
+                    <div class="img"><img src="{% static './assets/img/OIP.jpg'%}" alt="img" width="100%" height="100%"></div>
+                        
+                  <div class="author-tools p-5 text-center">
+                    <div class="tools-box" style="font-size: 150%;">
+                         <div class="Delete p-1">
+                            <button type="button" >
+                            Delete
+                        </button>
+                    </div>
+                        <div class="Update p-1">
+                            <button type="button" >
+                               Update
+                            </button>
+                        </div>
+                        <div class="View  p-1">
+                            <button type="button">
+                           View
+                        </button></div>
+                    </div>
+                  </div>                  
+                    <div class="text-desc">
+                        <h2>JAVASCRIPT METHOD ONLY  FEW GENIUSES KNOWS</h2>
+                    </div>
+                    <div class="datetime-stamp">
+                        <h3>Sat 18, Oct 2024-19:17:24</h3>
+                    </div>
+                       <div class="button">
+                        <input type="button" value="DISCOVER">
+                       </div>
+                   
+                 </div>
+                </div>
+                <div class="Recent-post margin-top-5">
+                    <div class="blog-post-card3 color-white">
+                        <div class="img">
+                        <img src="{% static './assets/img/limbe.jpg'%}" alt="Tourist site" width="100%" height="100%">
+                        </div>
+                        <div class="author-tools p-5 text-center">
+                            <div class="tools-box" style="font-size: 150%;">
+                                 <div class="Delete p-1">
+                                    <button type="button" >
+                                    Delete
+                                </button>
+                            </div>
+                                <div class="Update p-1">
+                                    <button type="button" >
+                                       Update
+                                    </button>
+                                </div>
+                                <div class="View  p-1">
+                                    <button type="button">
+                                   View
+                                </button></div>
+                            </div>
+                          </div>          
+                        <div class="text-description">
+                            <div class="description">
+                                <div class="datetime-stamp">
+                                    <h2 class="color-white">Sun, Oct 2024 -23:55</h2>
+                                </div>
+                                <div class="blogpost-description">
+                                    <h3 class="color-white">GOOD TOURIST ATTRACTION TO VISIT IN CAMEROUN.</h3>
+                                </div>
+                                <div class="button">
+                                    <input type="button" value="KNOW MORE">
+                                   </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+        <div class="All-post margin-top-5">
+            <h2>All Blog Post</h2>
+            <div class="post-container flex-container-row">
+            <div class="post first-post">
+                <div class="img">
+                    <img src="{% static './assets/img/Bali-Village-4.jpg'%}" alt="b-village" width="100%">
+                </div>
+                <div class="author-tools p-5 text-center">
+                    <div class="tools-box" style="font-size: 150%;">
+                         <div class="Delete p-1">
+                            <button type="button" >
+                            Delete
+                        </button>
+                    </div>
+                        <div class="Update p-1">
+                            <button type="button" >
+                               Update
+                            </button>
+                        </div>
+                        <div class="View  p-1">
+                            <button type="button">
+                           View
+                        </button></div>
+                    </div>
+                  </div>          
+                <div class="text-desc">
+                    <div class="description">
+                        <div class="datetime-stamp">
+                            <h3>28, Sun, Oct, 2024 -23:55</h3>
+                        </div>
+                        <div class="blogpost-description">
+                            <h3 class="color-white">HERE ARE THE FIVE NATURAL 
+                                BEACHES IN NIGERIA.</h3>
+                        </div>
+                        <div class="button">
+                            <input type="button" value="GET MORE DETAILS" >
+                           </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="post second-post">
+                <div class="img ">
+                    <img src="{% static './assets/img/shutterstock-133414805.webp'%}" alt="b-village" width="100%">
+                </div>
+                <div class="author-tools p-5 text-center">
+                    <div class="tools-box" style="font-size: 150%;">
+                         <div class="Delete p-1">
+                            <button type="button" >
+                            Delete
+                        </button>
+                    </div>
+                        <div class="Update p-1">
+                            <button type="button" >
+                               Update
+                            </button>
+                        </div>
+                        <div class="View  p-1">
+                            <button type="button">
+                           View
+                        </button></div>
+                    </div>
+                  </div>          
+                <div class="text-desc">
+                    <div class="description">
+                        <div class="datetime-stamp">
+                            <h3>19, Fri, July, 2024 -23:55</h3>
+                        </div>
+                        <div class="blogpost-description">
+                            <h3 class="color-white">BEST PLACE FOR FILMING AND TOURIST SITE YOU NEVER KNOW EXIST IN NIGERIA.</h3>
+                        </div>
+                        <div class="button">
+                            <input type="button" value="KNOW MORE">
+                           </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="post third-post">
+                <div class="img ">
+                    <img src="{% static './assets/img/R.jpg'%}" alt="leggins" width="100%">
+                </div>
+                <div class="author-tools p-5 text-center">
+                    <div class="tools-box" style="font-size: 150%;">
+                         <div class="Delete p-1">
+                            <button type="button" >
+                            Delete
+                        </button>
+                    </div>
+                        <div class="Update p-1">
+                            <button type="button" >
+                               Update
+                            </button>
+                        </div>
+                        <div class="View  p-1">
+                            <button type="button">
+                           View
+                        </button></div>
+                    </div>
+                  </div>          
+                <div class="text-desc">
+                    <div class="description">
+                        <div class="datetime-stamp">
+                            <h3> 13, Sat, May 2024 -12:15</h3>
+                        </div>
+                        <div class="blogpost-description">
+                            <h3 class="color-white">BEST WORKOUT LEGGINS MOST FEMALE HAVE NO GLUE</h3>
+                        </div>
+                        <div class="button">
+                            <input type="button" value="KNOW MORE" class="color-white">
+                           </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="post-container flex-container-row post-2">
+                <div class="post flex-container-column post-display margin-top-5">
+                    <div class="img">
+                        <img src="{% static './assets/img/wear.jpg'%}" alt="sharp leggins wears" width="100%">
+                    </div>
+                    <div class="author-tools p-5 text-center">
+                        <div class="tools-box" style="font-size: 150%;">
+                             <div class="Delete p-1">
+                                <button type="button" >
+                                Delete
+                            </button>
+                        </div>
+                            <div class="Update p-1">
+                                <button type="button" >
+                                   Update
+                                </button>
+                            </div>
+                            <div class="View  p-1">
+                                <button type="button">
+                               View
+                            </button></div>
+                        </div>
+                      </div>          
+                    <div class="text-desc margin-top-5">
+                        <div class="description">
+                            <div class="datetime-stamp">
+                                <h3>20, Fri, Dec,-10:30</h3>
+                            </div>
+                            <div class="blogpost-description">
+                                <h3 class="color-white">BEST LEGGINS FOR  ABSORBING SWEAT FOR A LONG EXCERCISING DAY.</h3>
+                            </div>
+                            <div class="button">
+                                <input type="button" value="KNOW MORE">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-container-column post-display2">
+                    <div class="post flex-container-row post-a padding-2">
+                        <div class="img">
+                            <img src="{% static './assets/img/stretching.jpeg'%}" alt="stretch-able" width="100%">
+                        </div>
+                        <div class="author-tools p-5 text-center">
+                            <div class="tools-box" style="font-size: 150%;">
+                                 <div class="Delete p-1">
+                                    <button type="button" >
+                                    Delete
+                                </button>
+                            </div>
+                                <div class="Update p-1">
+                                    <button type="button" >
+                                       Update
+                                    </button>
+                                </div>
+                                <div class="View  p-1">
+                                    <button type="button">
+                                   View
+                                </button></div>
+                            </div>
+                          </div>          
+                        <div class="text-desc margin-top-5">
+                            <div class="description">
+                                <div class="datetime-stamp">
+                                    <h3>23, Monday, Dec, -13:45 </h3>
+                                </div>
+                                <div class="blogpost-description">
+                                    <h3 class="color-white">
+                                        BEST STRETCHABLE LEGGINS FOR ALL BUTT SIZE AND LAST LONG.
+                                    </h3>
+                                </div>
+                                <div class="button">
+                                    <input type="button" value="FIND OUT MORE">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post flex-container-row post-b padding-2 margin-top-5">
+                        <div class="img">
+                            <img src="{% static './assets/img/workout leggins.jpg'%}" alt="excercise leggins" width="100%">
+                        </div>
+                        <div class="author-tools p-5 text-center">
+                            <div class="tools-box" style="font-size: 150%;">
+                                 <div class="Delete p-1">
+                                    <button type="button" >
+                                    Delete
+                                </button>
+                            </div>
+                                <div class="Update p-1">
+                                    <button type="button" >
+                                       Update
+                                    </button>
+                                </div>
+                                <div class="View  p-1">
+                                    <button type="button">
+                                   View
+                                </button></div>
+                            </div>
+                          </div>          
+                        <div class="text-desc margin-top-5">
+                        <div class="text-description">
+                            <div class="datetime-stamp">
+                                <h3>12 Sun, Dec, -12:00</h3>
+                            </div>
+                            <div class="blogpost-description">
+                                <h3 class="color-white">TOP LIGHT LEGGINS FOR OUTDOOR JOGGING   </h3>
+                            </div>
+                            <div class="button">
+                                <input type="button" value="KNOW NOW">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            </div>
+        <div class="catch-phrase-blog margin-top-5">
+            <div class="img">
+                <img src="{% static './assets/img/Best_headphones.jpg'%}" alt="headphone" width="100%">
+            </div>
+            <div class="author-tools p-5 text-center">
+                <div class="tools-box" style="font-size: 150%;">
+                     <div class="Delete p-1">
+                        <button type="button" >
+                        Delete
+                    </button>
+                </div>
+                    <div class="Update p-1">
+                        <button type="button" >
+                           Update
+                        </button>
+                    </div>
+                    <div class="View  p-1">
+                        <button type="button">
+                       View
+                    </button></div>
+                </div>
+              </div>          
+            <div class="desc">
+            <div class="datetime-stamp" >
+                    <h3 style="color: white;">Tues, Aug 2024 -08:52</h3>
+                </div>
+               <h2>Best  Audio Headphones in 2025</h2>
+                <button type="submit">HERE IS WHY</button>
+            </div>
+        </div>
+    </div>
+        <!-- blog footer -->
+        <div class="footer">
+            <div class="footer-container">
+                <div class="Top-footer-nav">
+                    <div class="previous">
+                        <img src="{% static './assets/img/logo_assets/arrow.png'%}" alt="back arrow" id="prev">
+                        <span>Previous</span>
+
+                    </div>
+                    <div class="nav-numbers">
+                        <div class="numbers">
+                            <span id="active">1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>...</span>
+                            <span>10</span>
+                        </div>
+                    </div>
+                    <div class="next">
+                        <span>Next</span>
+                        <img src="{% static './assets/img/logo_assets/arrow-left.png'%}" alt="arrow front" id="next">
+                       
+                    </div>
+                </div>
+                <div class="links margin-top-5">
+                    <a href="" id="Production">@ 2024,</a>
+                    <a href="" id="Twitter">Twitter,</a>
+                    <a href=""id="Linkedin">LinkedIn,</a>
+                    <a href="" id="Email">Email,</a>
+                    <a href="" id="Rssfeed">RSS  &nbsp;&nbsp;feed </a>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div> 
+   {% endblock %}
+  
+</body>
+</html>

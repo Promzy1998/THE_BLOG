@@ -1,0 +1,58 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Delete</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        .delete-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 2rem;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+        .delete-container h2 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+        .post-preview {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .btn-cancel {
+            background: #bdc3c7;
+            color: white;
+        }
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="delete-container">
+    <h2>Are you sure you want to delete this post?</h2>
+    <div class="post-preview">
+        <h4>{{ object.Title }}</h4>
+        {% if object.PostImage %}
+            <img src="{{ object.PostImage.url }}" alt="{{ object.title }}" style="max-width:100%; border-radius: 6px; margin-top: 10px;">
+        {% endif %}
+        <p>{{ object.Description }}</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-delete">Yes, Delete</button>
+        <a href="{% url 'DetailPostView' object.author object.category object.pk  %}" class="btn btn-cancel">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>
