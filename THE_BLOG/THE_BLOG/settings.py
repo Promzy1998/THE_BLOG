@@ -40,10 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BLOG.apps.BlogConfig',
-    'accounts.apps.AccountsConfig',
-    'BlogPost.apps.BlogpostConfig'
+
+    # Your apps (with full path)
+    'THE_BLOG.BLOG.apps.BlogConfig',
+    'THE_BLOG.accounts.apps.AccountsConfig',
+    'THE_BLOG.BlogPost.apps.BlogpostConfig',
 ]
+
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
