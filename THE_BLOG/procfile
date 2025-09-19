@@ -1,2 +1,2 @@
-web: gunicorn THE_BLOG.wsgi:application > Procfile
+web: gunicorn BLOG_HUB.wsgi:application > Procfile
 
