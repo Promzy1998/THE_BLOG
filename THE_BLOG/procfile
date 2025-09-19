@@ -1,2 +1,2 @@
-web: BLOG.wsgi:application
+web: THE_BLOG.wsgi:application
 
