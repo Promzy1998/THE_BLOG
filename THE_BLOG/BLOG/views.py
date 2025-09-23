@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 # from BlogPost.views import PostView
-from BlogPost.views import DetailAuthorPost, EditAuthorPost,  DeleteAuthorPost
+from THE_BLOG.BlogPost.views import DetailAuthorPost, EditAuthorPost,  DeleteAuthorPost
 
 # Create your views here.
 
