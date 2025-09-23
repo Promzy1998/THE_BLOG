@@ -1,6 +1,6 @@
 
 from django.views.generic import TemplateView, ListView, DetailView
-from BlogPost.models import DataPost
+from THE_BLOG.BlogPost.models import DataPost
 from django.core.paginator import Paginator
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
