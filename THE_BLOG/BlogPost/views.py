@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .models import DataPost
+from THE_BLOG.BlogPost.models import DataPost
 from .forms import DataPostForm
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
