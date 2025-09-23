@@ -20,13 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("Post/",include("BlogPost.urls")),
-    path("auth/", include("accounts.urls")),
-    path('accounts/', include('django.contrib.auth.urls')),
-     # new
-    # Include authentication URLs from 'accounts' app
-    path('', include('BLOG.urls')),
-    path('admin/', admin.site.urls),
+    path("Post/", include("THE_BLOG.BlogPost.urls")),  # fixed
+    path("auth/", include("THE_BLOG.accounts.urls")),  # optional to match consistency
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("", include("THE_BLOG.BLOG.urls")),           # fixed
+    path("admin/", admin.site.urls),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
