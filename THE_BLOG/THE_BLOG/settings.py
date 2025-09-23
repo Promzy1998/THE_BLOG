@@ -84,15 +84,13 @@ WSGI_APPLICATION = 'THE_BLOG.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'THE_BLOG',
-        'USER':'postgres',
-        'PASSWORD':'1998',
-        'HOST':'localhost'
-    }
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL", default="postgres://postgres:1998@localhost:5432/THE_BLOG"),
+        conn_max_age=600,
+        ssl_require=not config("DEBUG", cast=bool, default=True),
+    )
 }
-DATABASES["default"]=dj_database_url.parse(config('DATABASE_URL'))
+
 LOGIN_REDIRECT_URL="Index"
 
 # Password validation
