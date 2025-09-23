@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Your apps (with full path)
-    'THE_BLOG.BLOG.apps.BlogConfig',
-    'THE_BLOG.accounts.apps.AccountsConfig',
-    'THE_BLOG.BlogPost.apps.BlogpostConfig',
+    'BLOG.apps.BlogConfig',
+    'accounts.apps.AccountsConfig',
+    'BlogPost.apps.BlogpostConfig',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
