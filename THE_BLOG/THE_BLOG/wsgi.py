@@ -12,6 +12,6 @@ import os
 from django.core.wsgi import get_wsgi_application
 # changed to double refrence
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'THE_BLOG.THE_BLOG.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'THE_BLOG.settings')
 
 application = get_wsgi_application()
